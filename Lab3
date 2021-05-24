@@ -1,0 +1,110 @@
+# Создать класс Book: id, Название, Автор(ы), Издательство, Год издания, Количество страниц, Цена, Тип переплета.
+# Функции-члены реализуют запись и считывание полей (проверка корректности).
+# Создать список объектов. Вывести:
+# a) список книг заданного автора;
+# b) список книг, выпущенных после заданного года.
+
+class Book:
+    __bookID = 0
+    __bookName = ''
+    __bookAuthor = ''
+    __publishingHouse = ''
+    __publishingYear = 0
+    __pageAmount = 0
+    __bookPrice = 0
+    __coverType = ''
+
+    def __init__(self, bookID0, bookName0, bookAuthor0, publishingHouse0, publishingYear0, pageAmount0, bookPrice0, coverType0):
+        self.__bookID = bookID0
+        self.__bookName = bookName0
+        self.__bookAuthor = bookAuthor0
+        self.__publishingHouse = publishingHouse0
+        self.__publishingYear = publishingYear0
+        self.__pageAmount = pageAmount0
+        self.__bookPrice = bookPrice0
+        self.__coverType = coverType0
+#        print('New object created!')
+
+    def get_bookID(self):
+        return self.__bookID
+
+    def get_bookName(self):
+        return self.__bookName
+
+    def get_bookAuthor(self):
+        return self.__bookAuthor
+
+    def get_publishingHouse(self):
+        return self.__publishingHouse
+
+    def get_publishingYear(self):
+        return self.__publishingYear
+
+    def get_pageAmount(self):
+        return self.__pageAmount
+
+    def get_bookPrice(self):
+        return self.__bookPrice
+
+    def get_coverType(self):
+        return self.__coverType
+
+
+def bookInfoOutAuthor(i):
+    print(str('В нашей коллекции есть следующая книга данного автора:'))
+    print('Название: ' + bookCollection[i].get_bookName())
+    print('Автор: ' + bookCollection[i].get_bookAuthor())
+    print('Издательство: ' + bookCollection[i].get_publishingHouse())
+    print('Год: ' + str(bookCollection[i].get_publishingYear()))
+    print('Дополнительная информация: ' + str(bookCollection[i].get_pageAmount()) + ' стр., ' + str(bookCollection[i].get_bookPrice()) + ' рублей, ' + bookCollection[i].get_coverType())
+    print('------------------------------------------------------------------')
+
+def bookInfoOutYear(i):
+    print(str('В нашей коллекции есть следующая книга, изданная позднее указанного года:'))
+    print('Название: ' + bookCollection[i].get_bookName())
+    print('Автор: ' + bookCollection[i].get_bookAuthor())
+    print('Издательство: ' + bookCollection[i].get_publishingHouse())
+    print('Год: ' + str(bookCollection[i].get_publishingYear()))
+    print('Дополнительная информация: ' + str(bookCollection[i].get_pageAmount()) + ' стр., ' + str(bookCollection[i].get_bookPrice()) + ' рублей, ' + bookCollection[i].get_coverType())
+    print('------------------------------------------------------------------------------')
+
+i=0
+
+bookCollection = [Book(1,'"Во власти женщины"', 'Эрленд Лу', '"Азбука"', 1993, 254, 15, 'мягкий переплет'),
+Book(2,'"Наивно. Супер"', 'Эрленд Лу', '"АСТ"', 1996, 312, 17, 'мягкий переплет'),
+Book(3,'"Алхимик"', 'Пауло Коэльо', '"Эксмо"', 1988, 356, 22, 'твердый переплет'),
+Book(4,'"Одиннадцать минут"', 'Пауло Коэльо', '"Питер"', 2003, 415, 26, 'твердый переплет'),
+Book(5,'"Вероника решает умереть"', 'Пауло Коэльо', '"Азбука"', 1998, 395, 25, 'твердый переплет'),
+Book(6,'"Бойцовский клуб"', 'Чак Паланик', '"Эксмо"', 1996, 455, 30, 'твердый переплет'),
+Book(7,'"Ангелы и демоны"', 'Дэн Браун', '"Эксмо"', 2000, 552, 45, 'твердый переплет'),
+Book(8,'"Код да Винчи"', 'Дэн Браун', '"Питер"', 2003, 671, 45, 'твердый переплет'),
+Book(9,'"Инферно"', 'Дэн Браун', '"АСТ"', 2013, 453, 35, 'твердый переплет'),
+Book(10,'"Девушка с татуировкой дракона"', 'Стиг Ларссон', '"Азбука"', 2005, 353, 35, 'мягкий переплет'),
+Book(11,'"Девушка, которая играла с огнём"', 'Стиг Ларссон', '"АСТ"', 2006, 298, 25, 'мягкий переплет'),
+Book(12,'"Удушье"', 'Чак Паланик', '"Эксмо"', 2001, 244, 35, 'мягкий переплет')]
+
+wantedAuthor = ''
+wantedAuthorCheck = False
+wantedYear = 0
+wantedYearCheck = False
+
+wantedAuthor = input('Введите, пожалуйста, имя автора (Эрленд Лу, Пауло Коэльо, Чак Паланик, Дэн Браун или Стиг Ларссон): \n')
+while i < len(bookCollection):
+    if bookCollection[i].get_bookAuthor() == wantedAuthor:
+        bookInfoOutAuthor(i)
+        wantedAuthorCheck = True
+    i+=1
+
+if wantedAuthorCheck == False:
+    print('К сожалению, у нас нет книг данного автора :(')
+
+i=0
+wantedYear = int(input('Введите, пожалуйста, год издания (есть книги изданные с 1988 по 2013): \n'))
+while i < len(bookCollection):
+    if bookCollection[i].get_publishingYear() >= wantedYear:
+        bookInfoOutYear(i)
+        wantedYearCheck = True
+    i+=1
+
+if wantedAuthorCheck == False:
+    print('К сожалению, у нас нет книг изданных позднее 2013 года :(')
