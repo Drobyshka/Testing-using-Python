@@ -1,0 +1,30 @@
+# Скопировать в файл F2 только четные строки из F1. Подсчитать размер файлов F1 и F2 (в байтах)
+import os
+
+array1 = []
+array2 = []
+
+with open(r'D:\F1.txt', 'r', encoding='utf-8') as f:
+    for line in f:
+        line = line.strip()
+        array1.append(line)
+
+    i = 0
+    for i in range(len(array1)):
+        if (i+1) % 2 != 0:
+            array1[i] = ''
+
+    i = 0
+    while i < len(array1):
+        if array1[i] == '':
+            array2.append(array1[i+1])
+            del array1[i]
+        else:
+            i += 1
+#    print(array2)
+
+    with open(r'D:\F2.txt', 'w', encoding='utf-8') as ff:
+        ff.write('\n'.join(array2))
+
+print('Размер первого файла равен '+ str(os.path.getsize("D:\\F1.txt"))+' байт')
+print('Размер второго файла равен '+ str(os.path.getsize("D:\\F2.txt"))+' байт')
